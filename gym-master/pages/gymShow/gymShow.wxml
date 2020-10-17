@@ -1,0 +1,11 @@
+<!--index.wxml-->
+<view class="home">
+  <!-- 主题课程 -->
+  <view class='mainView'>
+    <view class='gridView'>
+      <view class='item' wx:for="{{gymShowList}}" bindtap='capdetail' data-id='{{item}}' style="height:{{height}}px">
+        <image src='{{item}}'></image>
+      </view>
+    </view>
+  </view>
+</view>

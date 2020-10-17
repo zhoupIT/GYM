@@ -1,0 +1,14 @@
+<view class="home" wx:if="{{list.length>0}}">
+  <view class='mainView' wx:for='{{list}}' wx:key data-item='{{item}}'>
+    <view class="body">
+      <text class='signTime' style="line-height:1.5em;">{{item.signTime}}签到入场</text>
+      <text class='courseName' style="line-height:1.5em;">课程:{{item.course.courseName}}</text>
+      <text class='timeSlot' style="line-height:1.5em;">时间:{{item.timeSlot}}</text>
+      <text class='coachName' style="line-height:1.5em;">教练:{{item.coach.coachName}}</text>
+    </view>
+  </view>
+</view>
+ <view class='nothing' wx:else>
+    <image src='http://106.54.199.143/group1/M00/00/00/rBEACl2RpAeALMXvAACp_ZK8OEo707.png'></image>
+    <view>暂无签到记录~</view>
+</view>

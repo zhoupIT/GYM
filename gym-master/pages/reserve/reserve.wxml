@@ -1,0 +1,129 @@
+<!--pages/reservation/reservation.wxml-->
+<wxs module="filters" src="../../libs/filter/filter.wxs"></wxs>
+<view class="reservation">
+  <view class="headWeek">
+    <scroll-view class='weekList' scroll-x="true">
+      <view class="week {{enoughDate == item.fullDate ? 'active' : ''}}" bindtap='changeTab' data-date='{{item.fullDate}}' wx:for="{{dateList}}" data-current='{{index}}' wx:key>
+        <view class='c1'>{{item.week}}</view>
+        <view class='c2'>{{item.month}}-{{item.day}}</view>
+      </view>
+    </scroll-view>
+  </view>
+  <!-- 教练 -->
+  <view class="headcoach">
+    <scroll-view class='coachList' scroll-x="true">
+      <view class="coach {{item.id == coachSelected.id?'active':''}}" bindtap='changeCoach' wx:for="{{coachList}}" data-item='{{item}}' wx:key data-index='{{index}}'>
+        <image class="cover" src="{{item.coachPortrait}}"></image>
+        <view class="name">{{item.coachName}}</view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 课程 -->
+  <!-- <view class="headCourse">
+    <scroll-view class='courseList' scroll-x="true">
+      <view class="course {{item.id == courseSelected.id?'active':''}}" bindtap='changeCourse' wx:for="{{coachSelected.courseList}}" data-item='{{item}}' wx:key data-index='{{index}}'>
+       {{item.courseName}}
+      </view>
+    </scroll-view>
+  </view> -->
+
+  <!-- 课程列表 -->
+  <!-- <view class="schedule" wx:if="{{courseList.length>0}}">
+    <view class="scheduleList">
+      <view class="wrap">
+        <view class="course" wx:for="{{courseList}}" wx:for-item="items" wx:key>
+          <view class="head">
+            <image class="cover" src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2670979438,4271926634&fm=11&gp=0.jpg"></image>
+            <view class="middle">
+              <view class="name">{{items.id}}</view>
+              <view class="time">
+                <image src="../../images/yuyue_icon_time.png"></image>
+                <view class="timedate">{{filters.split(items.courseFrom,'-')[1]}}-{{filters.split(items.courseFrom,'-')[2]}} - {{filters.split(items.courseTo,'-')[1]}}-{{filters.split(items.courseTo,'-')[2]}} 60分钟</view>
+              </view>
+              <view class="age">
+                <image src="../../images/yuyue_icon_baby.png"></image>
+                <view class="yearsold">{{items.coachId}}</view>
+              </view>
+            </view>
+          </view>
+          <view class="reserve">
+            <view class="time">
+              <view class="name">预约截止时间：</view>
+              <view class="sj">19:00</view>
+            </view>
+            <view class="btn" data-id="{{items.scheduleId}}" bindtap="sure">预约</view>
+          </view>
+          <view class="icon">
+            毅劲健身工作室
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='nothing' wx:else>
+    <image src='http://106.54.199.143/group1/M00/00/00/rBEACl2RpAeALMXvAACp_ZK8OEo707.png'></image>
+    <view>店长正在努力排课中~</view>
+  </view>
+</view> -->
+
+  <!-- 约课提示内容 -->
+  <view class="course_tip">
+    <view class="head">请选择
+      <picker bindchange="bindPickerChange" value="{{courseSelectedIndex}}" range="{{coachSelected.courseList}}" range-key="courseName">
+    <view class="course_sel" wx:if="{{coachSelected.courseList.length>0}}">
+     {{coachSelected.courseList[courseSelectedIndex].courseName}}
+    </view>
+    <view class="course_sel" wx:else>
+     暂无
+    </view>
+  </picker>
+      课程开始时间</view>
+    <view class="time">每节60分钟</view>
+  </view>
+
+  <!-- 约课列表-精简模式 -->
+  <view class="mainView">
+    <view class="gridView">
+      <view class="item" wx:for="{{timeList}}" bindtap="onTimeClicked" data-time="{{item}}" data-index="{{index}}" wx:key>
+        <view wx:if='{{index == timeSelecetedIndex}}' class="text_sel">{{item.begintime}}</view>
+        <view wx:elif='{{item.hasBeenAppointment == true}}' class="text_unSel">{{item.begintime}}
+        <view wx:if='{{item.hasBeenAppointment == true && item.unSel != "Ma"}}' class="text_appointed_tag">约</view>
+        </view>
+        <view wx:elif='{{item.hasSigned == true}}' class="text_unSel">{{item.begintime}}</view>
+        <view wx:else class="text_common">{{item.begintime}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="reserve">
+  <form bindsubmit="formSubmit" report-submit="{{true}}">
+    <button class="reserve_btn" bindtap="onAppointmentClicked" formType="submit">立即预约</button>
+     </form>
+  </view>
+</view>
+<!-- 弹窗 -->
+<view class="modal" wx:if="{{selectIndex == 0 || selectIndex == 1}}">
+  <!-- 时间 -->
+  <view class="place timeselect" wx:if="{{selectIndex == 0}}">
+    <view class="timebox">
+      <view class="select {{selectCoachIndex.length == 0 ? 'active' : ''}}" bindtap="coach" data-index="" data-start="" data-end="">不限</view>
+      <view class="select {{item.checked == true ? 'active' : ''}}" bindtap="coach" data-index="{{index}}" wx:for="{{coachList}}">{{item.name}}</view>
+    </view>
+    <view class="btn">
+      <button class="sure" bindtap="sureCoach">确定</button>
+    </view>
+  </view>
+  <!-- 时间 -->
+  <view class="place timeselect" wx:if="{{selectIndex == 1}}">
+    <view class="timebox">
+      <view class="select {{selectTimeIndex.length == 0 ? 'active' : ''}}" bindtap="time" data-index="" data-start="" data-end="">不限</view>
+      <view class="select {{item.checked == true ? 'active' : ''}}" bindtap="time" data-index="{{index}}" data-start="{{item.classRangeBeginTime}}" data-end="{{item.classRangeEndTime}}" wx:for="{{timeList}}">{{item.classRangeBeginTime}} - {{item.classRangeEndTime}}</view>
+    </view>
+    <view class="btn">
+      <button class="sure" bindtap="sureTime">确定</button>
+    </view>
+  </view>
+  <!-- 点击空白取消 -->
+  <view class="cancel" bindtap="cancel"></view>
+  
+</view>

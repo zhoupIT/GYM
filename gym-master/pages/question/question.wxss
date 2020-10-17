@@ -1,0 +1,23 @@
+/**index.wxss**/
+
+page {
+  background: #fff;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}
+
+.head {
+  font-size: 35rpx;
+  color: #4c4c4c;
+  margin-top: 30rpx;
+  
+}
+
+.text{
+  font-size: 30rpx;
+  color: #4c4c4c;
+  margin-top: 10rpx;
+}
+.m {
+  margin-top: 20rpx;
+}

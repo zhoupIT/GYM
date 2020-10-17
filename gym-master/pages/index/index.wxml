@@ -1,0 +1,103 @@
+<!--index.wxml-->
+<view class="home">
+  <view class='swiper-warp'>
+    <view class='swiper-1'></view>
+    <view class='swiper-2'></view>
+    <swiper autoplay duration="{{duration}}" interval="{{interval}}" circular previous-margin="{{leftMargin}}" next-margin="{{rightMargin}}" bindchange="handleChange">
+      <block wx:for="{{imgUrls}}" wx:key>
+        <swiper-item data-url="{{item.advUrl}}">
+          <image src="{{item.advUrl}}" class="slide-image {{currentIndex == index ? 'active': ''}}" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="dots" wx:if="{{imgUrls.length > 1}}">
+      <block wx:for="{{imgUrls}}" wx:key="unique">
+        <view class="dot{{index == currentIndex ? ' active' : ''}}"></view>
+      </block>
+    </view>
+  </view>
+  <!-- location -->
+  <view class='loc' bindtap="onlocClicked">
+    <view class="left">
+      <image src='../../images/location.png'></image>
+      <text>工业园区星湖街818号7幢166室</text>
+    </view>
+    <image src="../../images/user_icon_more.png" class="moreImg"></image>
+  </view>
+
+    
+
+  <!-- tab -->
+  <view class='tab'>
+    <view class='tabList' bindtap='onScanClicked'>
+      <image class='icon' src="../../images/1.png"></image>
+      <view class='text'>扫一扫</view>
+    </view>
+    <view class='tabList' bindtap="onSignListClicked">
+      <image class='icon' src="../../images/3.png"></image>
+      <view class='text'>签到记录</view>
+    </view>
+    <view class='tabList' bindtap="onCustomerShowClicked">
+      <image class='icon' src="../../images/2.png"></image>
+      <view class='text'>会员风采</view>
+    </view>
+    <view class='tabList' bindtap='onEnvShowClicked'>
+      <image class='icon' src="../../images/4.png"></image>
+      <view class='text'>健身环境</view>
+    </view>
+  </view>
+  <!-- 今日预约 -->
+  <view class='boutique'>
+    <view class='title'>
+      <text class='literal'>预约课程</text>
+    </view>
+    <text class="tip">今天({{week}})预约的课程</text>
+
+    <scroll-view class='courseList' scroll-x>
+      <view class="course" bindtap='lessondetail' data-item='{{item}}' wx:for="{{list}}" data-current='{{index}}' wx:key>
+        <image src="{{item.course.coverImg}}" class="cover"></image>
+        <view class='c1'>{{item.course.courseName}}</view>
+        <view class='c2'>{{item.coach.coachName}} | 60分钟</view>
+        <view class='c3 c3tag1' wx:if="{{item.hasSigned == true}}">{{item.courseFrom}}</view>
+        <view class='c3 c3tag2' wx:elif="{{item.appointmentStatus.code == '1010' &&item.hasBeenAppointment == true && item.hasSigned == false}}">{{item.courseFrom}}</view>
+        <view class='c3 c3tag3' wx:elif="{{item.appointmentStatus.code == '1020'}}">{{item.courseFrom}}</view>
+        <view class="c4 tag1" wx:if="{{item.hasSigned == true}}">已签到</view>
+        <view class="c4 tag2" wx:elif="{{item.appointmentStatus.code == '1010' &&item.hasBeenAppointment == true && item.hasSigned == false}}">待签到</view>
+        <view class="c4 tag3" wx:elif="{{item.appointmentStatus.code == '1020'}}">已取消</view>
+      </view>
+    </scroll-view>
+
+    <!-- <view class='img_box'>
+      <view class='box' wx:key wx:for="{{list}}" bindtap='lessondetail' data-item='{{item}}'>
+        <view class="top">
+
+          <view class="courseLeft">
+            <image class="cover" src="{{item.course.coverImg}}"></image>
+          </view>
+          <view class="courseRight">
+            <view class="info">
+              <text class="name">{{item.course.courseName}}</text>
+              <text class="time">60分钟</text>
+              <view class="coach">
+                <image class="portrait" src="{{item.coach.coachPortrait}}"></image>
+                <text class="name">{{item.coach.coachName}}</text>
+              </view>
+            </view>
+            <view class="event">
+              <text class="timeFrom timeFrom1" wx:if="{{item.hasSigned == true}}">{{item.courseFrom}}</text>
+              <text class="timeFrom timeFrom2" wx:if="{{item.appointmentStatus.code == '1010' &&item.hasBeenAppointment == true && item.hasSigned == false}}">{{item.courseFrom}}</text>
+              <text class="timeFrom timeFrom3" wx:if="{{item.appointmentStatus.code == '1020'}}">{{item.courseFrom}}</text>
+              <text class="status status1" wx:if="{{item.hasSigned == true}}">已签到</text>
+              <text class="status status2" wx:elif="{{item.appointmentStatus.code == '1010' &&item.hasBeenAppointment == true && item.hasSigned == false}}">待签到</text>
+              <text class="status status3" wx:elif="{{item.appointmentStatus.code == '1020'}}">已取消</text>
+            </view>
+          </view>
+        </view>
+        <view class="bottom_line"></view>
+      </view>
+    </view> -->
+  </view>
+</view>
+
+
+<add-tips text="点击「添加到我的小程序」" duration="" />

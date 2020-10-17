@@ -1,0 +1,24 @@
+<view class="container authorize">
+  <image class="logo" src="../../images/icon_white.png" mode="widthFix" />
+  <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" class="userinfo mini-btn" wx:if="{{logging == false}}">
+    <text>授权个人信息</text>
+  </button>
+
+  <button wx:if="{{logging == true}}" class="phone mini-btn">
+    <text>登录中...</text>
+  </button>
+  <view class="bgcover" catchtouchmove='preventTouchMove' wx:if='{{showModal}}'></view>
+  <view class="modalDlg" catchtouchmove='preventTouchMove' wx:if='{{showModal}}'>
+    <view class='windowRow'>
+      <text class='userTitle'>绑定</text>
+      <text class="userTitle_tip">绑定手机号码来获取预约提醒</text>
+    </view>
+    <view class='wishName'>
+      <input bindinput='wish_put' placeholder='请输入手机号码' class='wish_put' type="number"></input>
+    </view>
+
+    <view class='wishbnt'>
+      <button class='wishbnt_bt' bindtap='ok'>确定</button>
+    </view>
+  </view>
+</view>

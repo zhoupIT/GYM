@@ -1,0 +1,64 @@
+/**index.wxss**/
+
+page {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.mainView {
+  padding-top: 20rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}
+
+.mainView .body {
+   background-color: #fff;
+   padding: 20rpx;
+   border-radius: 12rpx;
+   box-shadow: 0px 2rpx 10rpx 0rpx rgba(0, 0, 0, 0.08);
+}
+
+.mainView .body .desc {
+  font-size: 30rpx;
+  color: #4c4c4c;
+  margin-top: 10rpx;
+}
+
+.gridView {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 10rpx;
+  margin-right: -10rpx;
+  padding-bottom: 10rpx;
+}
+
+.item {
+  width: calc(33.33% - 20rpx);
+  margin-right: 20rpx;
+  background-color: #fff;
+  margin-top: 20rpx;
+}
+
+.item image{
+  display:block;
+  max-width: 100%;
+  height: 100%;
+  border-radius: 10rpx;
+}
+
+.nothing {
+  width: 100%;
+  min-height: 800rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #b2b2b2;
+  font-size: 28rpx;
+}
+
+.nothing image {
+  width: 300rpx;
+  height: 311rpx;
+  margin: 0rpx auto 39rpx;
+}

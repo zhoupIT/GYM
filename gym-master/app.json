@@ -1,0 +1,48 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/reserve/reserve",
+    "pages/question/question",
+    "pages/my/my",
+    "pages/authorize/authorize",
+    "pages/signRecord/signRecord",
+    "pages/gymShow/gymShow",
+    "pages/customerShow/customerShow",
+    "pages/record/record",
+    "pages/recorddetail/recorddetail"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "backgroundColor": "#F2F2F2",
+    "navigationBarBackgroundColor": "#FFB451",
+    "navigationBarTitleText": "毅劲健身工作室",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#262626",
+    "selectedColor": "#1A1A1A",
+    "borderStyle": "black",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/homed.png"
+      },
+      {
+        "pagePath": "pages/reserve/reserve",
+        "text": "预约",
+        "iconPath": "images/reserve.png",
+        "selectedIconPath": "images/reserved.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "images/my.png",
+        "selectedIconPath": "images/mine.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

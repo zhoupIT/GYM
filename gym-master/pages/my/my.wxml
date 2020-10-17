@@ -1,0 +1,92 @@
+<!--pages/my/my.wxml-->
+<!-- 引入过滤器 -->
+<wxs module="filters" src="../../libs/filter/filter.wxs"></wxs>
+<view class='mine'>
+  <!-- 用户信息 -->
+  <view class='user'>
+    <view class='user_box'>
+      <!-- 用户头像昵称 -->
+      <view class='tx' bindtap="onLoginClicked">
+        <image class='avatar' src="{{user.portrait ? user.portrait : '../../images/icon_white.png'}}"></image>
+        <view class='name'>
+          <view class='nick'>{{user.nickname ? user.nickname : '点此登录'}}</view>
+          <view class='phone'>
+            {{user.phone ? filters.spacePhone(user.phone) : '****'}}
+          </view>
+        </view>
+      </view>
+      <view class='card' style="background:url('http://106.54.199.143/group1/M00/00/00/rBEACl2Ro_iALQzDAADq740zC7g628.png') no-repeat;background-size:100% 100%;background-position:center">
+        <view class='top'>
+          <view class='record'>课次记录</view>
+          <view class='lesson' bindtap='recharge'>
+            <image src='http://106.54.199.143/group1/M00/00/00/rBEACl2Ro-eAdUu_AAANJXTxIAM416.png'></image>
+            <view class='text'>充值课次</view>
+          </view>
+        </view>
+        <view class='bottom'>
+          <view class='remain'>
+            <view class='num' wx:if="{{user.appointmentRemain}}">{{user.appointmentRemain}}</view>
+            <view wx:else>0</view>
+            <view class='kind'>剩余课次</view>
+          </view>
+          <view class='remain learned'>
+            <view class='num' wx:if="{{user.appointmentUsed}}">{{user.appointmentUsed}}</view>
+            <view wx:else>0</view>
+            <view class='kind'>已用课次</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="box">
+    <view class="box_1" data-index="1" bindtap="select">
+      <image src="../../images/user_icon_dsk.png"></image>
+      <view class="name">待签到</view>
+    </view>
+    <view class="box_2" data-index="2" bindtap="select">
+      <image src="../../images/user_icon_ysk.png"></image>
+      <view class="name">已签到</view>
+    </view>
+    <view class="box_3" data-index="3" bindtap="select">
+      <image src="../../images/user_icon_yyjl.png"></image>
+      <view class="name">预约记录</view>
+      <image class="shadow" src="../../images/user_shadow.png"></image>
+    </view>
+  </view>
+
+  <!-- 列表 -->
+  <view class='list'>
+    <view class='list_box' bindtap='jump' data-name='yueke'>
+      <view class='list_left'>
+        <image class='icon' src='../../images/user_icon_ruhe.png'></image>
+        <view class='baobao'>如何约课</view>
+      </view>
+      <image class='arrow' src='../../images/user_icon_more.png'></image>
+    </view>
+    <view class='list_box' bindtap='jump' data-name='kefu'>
+      <view class='list_left'>
+        <image class='icon' src='../../images/user_icon_kefu.png'></image>
+        <view class='baobao'>联系客服</view>
+      </view>
+      <image class='arrow' src='../../images/user_icon_more.png'></image>
+    </view>
+  </view>
+</view>
+
+<!-- modal -->
+<view class='modal' wx:if="{{showLead}}">
+  <view class="wrap">
+    <swiper duration="400" indicator-dots="true" indicator-color="rgba(255, 180, 81, 1)" indicator-active-color="rgba(92, 149, 253, 1)">
+      <block wx:for="{{leadImgUrls}}">
+        <swiper-item>
+          <image src="{{item}}" class="slide-image" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <!-- 知道了 -->
+  <view class='ok-btn' hover-class='btn-hover' bindtap='okHandler'>
+    <image src="../../images/close.png"></image>
+  </view>
+</view>

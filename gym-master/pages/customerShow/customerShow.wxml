@@ -1,0 +1,16 @@
+<view class="home" wx:if="{{list.length>0}}">
+  <view class='mainView' wx:for='{{list}}' wx:key data-item='{{item}}'>
+    <view class="body">
+      <text class='desc' style="line-height:1.5em;">{{item.showMsg}}</text>
+      <view class='gridView'>
+        <view class='item' wx:for="{{item.showImgArr}}" wx:for-item="img" bindtap='capdetail' data-item='{{item}}' data-currentImg='{{img}}' style="height:{{height}}px">
+          <image src='{{img}}'></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+ <view class='nothing' wx:else>
+    <image src='http://106.54.199.143/group1/M00/00/00/rBEACl2RpAeALMXvAACp_ZK8OEo707.png'></image>
+    <view>暂无数据~</view>
+</view>

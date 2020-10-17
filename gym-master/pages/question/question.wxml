@@ -1,0 +1,45 @@
+
+<view class="head">约课</view>
+<view class="text m">
+  1. 选择预约日期
+</view>
+
+<view class="text">
+  2. 选择预约的教练
+</view>
+
+<view class="text">
+  3. 选择预约的课程的开始的时间，每节为60分钟
+</view>
+
+<view class="text">
+  4. 点击立即预约，将消耗您的剩余课次。
+</view>
+<view class="head">签到</view>
+<view class="text m">
+  1. 选择扫一扫
+</view>
+
+<view class="text">
+  2. 对准店长展示的二维码
+</view>
+
+<view class="text">
+  3. 扫码签到
+</view>
+<view class="head">取消</view>
+<view class="text m">
+  ⚪ 请在开课前两小时取消
+</view>
+
+<view class="text">
+  ⚪ 一周只可以取消三次
+</view>
+
+<view class="text">
+  ⚪ 如遇到问题，请联系店长
+</view>
+<view class="head">充值</view>
+<view class="text m">
+  ⚪ 请联系店长为您充值
+</view>

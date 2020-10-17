@@ -1,0 +1,70 @@
+<!--pages/recorddetail/recorddetail.wxml-->
+<view class='detail'>
+  <!-- 卡片 -->
+  <view class='card_wrap {{status[reserveDetail.reserveStatus]}}'>
+    <view class='radius'></view>
+    <view class='card'>
+      <view class='circle circle1'></view>
+      <view class='circle circle2'></view>
+      <view class='address'>
+        <view class='name'>
+          <view>{{reserveItem.course.courseName}}</view>
+          <image class="coverImg" src="{{reserveItem.course.coverImg}}"></image>
+        </view>
+        <view class='lesson' wx:if="{{reserveItem.appointmentStatus.code == '1020'}}">已取消</view>
+        <view class='lesson' wx:if="{{reserveItem.hasSigned == true}}">已签到</view>
+        <view class='lesson' wx:if="{{reserveItem.hasSigned == false && reserveItem.appointmentStatus.code == '1010'}}">待签到</view>
+      </view>
+      <view class='infobot'>
+        <!-- 上 -->
+        <view class='message' bindtap='onlocClicked' data-longitude='{{reserveDetail.longitude}}' data-latitude='{{reserveDetail.latitude}}'>
+          <view class='date'>
+            {{reserveItem.timeSlot}}
+            <image class='icon' src='../../images/yuyue_icon_time.png'></image>
+          </view>
+          <view class='nick'>
+            地点
+            <image class='icon' src='../../images/yuyue_icon_time.png'></image>
+            <image class='arrow' src='../../images/user_icon_more.png'></image>
+          </view>
+          <view class='location'>工业园区星湖街818号7幢166室</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 信息 -->
+  <view class='list'>
+    <view class='list_content'>
+      <view class='name'>预约方式</view>
+      <view class='cont'>1课时</view>
+    </view>
+    <view class='list_content'>
+      <view class='name'>教练</view>
+      <view class='cont'>{{reserveItem.coach.coachName}}</view>
+    </view>
+  </view>
+
+  <!-- 预约说明 -->
+  <view class='explain'>
+    <text wx:if="{{reserveItem.hasSigned == false && reserveItem.appointmentStatus.code == '1010'}}">预约说明\n如需取消课程，请提前2小时取消。</text>
+    <text wx:if="{{reserveItem.hasSigned == true}}">预约说明\n课程已开班，如需取消课程，请提前2小时取消。</text>
+    <text wx:if="{{reserveItem.appointmentStatus.code == '1020'}}">预约说明\n课程已取消，请预约其他课程。</text>
+  </view>
+
+  <!-- 预约按钮 -->
+  <view class='reserve' wx:if="{{reserveItem.hasSigned == false && reserveItem.appointmentStatus.code == '1010'}}">
+    <view class='btn' bindtap='cancel'>取消预约</view>
+  </view>
+
+  <!-- 引用子组件 -->
+  <dialog id='dialog' 
+    title='{{title}}' 
+    content='{{content}}' 
+    cancelText='{{cancelText}}' 
+    confirmText='{{confirmText}}' 
+    isShowCancelBtn='true' 
+    bind:cancelEvent="cancel_dialog" 
+    bind:confirmEvent="{{confirmEvent}}">
+  </dialog>
+</view>
