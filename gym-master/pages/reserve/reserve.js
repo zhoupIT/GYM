@@ -124,6 +124,16 @@ Page({
         'begintime': '20:00',
         'hasBeenAppointment': false,
         'hasSigned': false
+      },
+      {
+        'begintime': '20:30',
+        'hasBeenAppointment': false,
+        'hasSigned': false
+      },
+      {
+        'begintime': '21:00',
+        'hasBeenAppointment': false,
+        'hasSigned': false
       }
     ],
     timeSeleceted: null, //选择的时间段
@@ -209,10 +219,10 @@ Page({
     var courseFrom = this.data.enoughDate + " " + this.data.timeSeleceted.begintime;
     console.log(courseFrom)
     var courseTo;
-    if (this.data.timeSelecetedIndex == 20) {
-      courseTo = this.data.enoughDate + " " + "21:00"
-    } else if (this.data.timeSelecetedIndex == 19) {
-      courseTo = this.data.enoughDate + " " + "20:30"
+    if (this.data.timeSelecetedIndex == 22) {
+      courseTo = this.data.enoughDate + " " + "22:00"
+    } else if (this.data.timeSelecetedIndex == 21) {
+      courseTo = this.data.enoughDate + " " + "21:30"
     } else {
       courseTo =  this.data.enoughDate + " " + this.data.timeList[this.data.timeSelecetedIndex + 2].begintime
     }
@@ -355,10 +365,11 @@ Page({
             //   that.data.timeList[timeIndex + 1].hasBeenAppointment = true;
             //   that.data.timeList[timeIndex - 1].hasBeenAppointment = true;
             // }
+            // 将相邻的时间段置灰变成已预约
             if (timeIndex == 0) {
               that.data.timeList[timeIndex + 1].unSel = 'Ma';
               that.data.timeList[timeIndex + 1].hasBeenAppointment = true;
-            } else if (timeIndex == 20) {
+            } else if (timeIndex == 22) {
               that.data.timeList[timeIndex - 1].unSel = 'Ma';
               that.data.timeList[timeIndex - 1].hasBeenAppointment = true;
             } else {
